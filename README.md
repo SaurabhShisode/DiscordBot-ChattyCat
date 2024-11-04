@@ -10,18 +10,18 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
    ```text
    User: hello
    ChattyCat: Hello, smoky07830!
-2. **Motivational Quotes**: Users can request motivational quotes to stay inspired by using the command "!quote".
+2. **Motivational Quotes**: Users can request motivational quotes to stay inspired by using the command '!quote'.
    **Example:**
    ```text
    User: !quote
    ChattyCat: Those Who Dare To Fail Miserably Can Achieve Greatly.
-3. **Reminders**: Users can set reminders specifying the number of seconds after which they should be reminded.
+3. **Reminders**: Users can set reminders specifying the number of seconds after which they should be reminded using '!remind <seconds> <reminder>'.
    **Example:**
    ```text
    User: !remind 10 run
    ChattyCat: Reminder set! I'll remind you in 10 seconds.
    ChattyCat: Reminder: run
-4. **Polls**: Users can create simple polls to gather opinions from server members.
+4. **Polls**: Users can create simple polls to gather opinions from server members using '!poll <question> <opt1> <opt2>...'.
    **Example:**
    ```text
    User: !poll BGT? India Australia
@@ -29,13 +29,13 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
    BGT?
    1. India
    2. Australia
-5. **Definitions**: Get definitions of words using !define <word>.
+5. **Definitions**: Get definitions of words using '!define <word>'.
    **Example:**
    ```text
    User: !define placements
    ChattyCat: 📜 Definition of placements: The act of placing or putting in place; the act of locating or positioning; the state of being 
    placed.
-6. **Coin Flip**: Flip a coin to get a random result of "Heads" or "Tails" using !coinflip.
+6. **Coin Flip**: Flip a coin to get a random result of "Heads" or "Tails" using '!coinflip'.
    **Example:**
    ```text
    User: !coinflip
@@ -46,18 +46,18 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
   - `!list`: List all available coding challenges.
    **Example:**
    ```text
-User: !challenge
-ChattyCat: https://codingchallenges.fyi/challenges/3
-
-User: !add https://leetcode.com/problems/middle-of-the-linked-list/
-ChattyCat: Challenge added successfully.
-
-User: !list
-ChattyCat: Available Challenges:
-https://codingchallenges.fyi/challenges/1
-https://codingchallenges.fyi/challenges/2
-https://codingchallenges.fyi/challenges/3
-https://leetcode.com/problems/middle-of-the-linked-list/
+   User: !challenge
+   ChattyCat: https://codingchallenges.fyi/challenges/3
+    
+   User: !add https://leetcode.com/problems/middle-of-the-linked-list/
+   ChattyCat: Challenge added successfully.
+    
+   User: !list
+   ChattyCat: Available Challenges:
+   https://codingchallenges.fyi/challenges/1
+   https://codingchallenges.fyi/challenges/2
+   https://codingchallenges.fyi/challenges/3
+   https://leetcode.com/problems/middle-of-the-linked-list/
 
 
 
