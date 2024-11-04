@@ -46,24 +46,24 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
    User: !coinflip
    ChattyCat: 🎖 The coin landed on: Tails!
 7. **Coding Challenges**: Users can interact with coding challenges with various commands:
-  - `!challenge`: Get a random coding challenge.
-  - `!add <link>`: Add a new coding challenge link.
-  - `!list`: List all available coding challenges.
-
-   **Example:**
-   ```text
-   User: !challenge
-   ChattyCat: https://codingchallenges.fyi/challenges/3
-    
-   User: !add https://leetcode.com/problems/middle-of-the-linked-list/
-   ChattyCat: Challenge added successfully.
-    
-   User: !list
-   ChattyCat: Available Challenges:
-   https://codingchallenges.fyi/challenges/1
-   https://codingchallenges.fyi/challenges/2
-   https://codingchallenges.fyi/challenges/3
-   https://leetcode.com/problems/middle-of-the-linked-list/
+    - `!challenge`: Get a random coding challenge.
+    - `!add <link>`: Add a new coding challenge link.
+    - `!list`: List all available coding challenges.
+  
+     **Example:**
+     ```text
+     User: !challenge
+     ChattyCat: https://codingchallenges.fyi/challenges/3
+      
+     User: !add https://leetcode.com/problems/middle-of-the-linked-list/
+     ChattyCat: Challenge added successfully.
+      
+     User: !list
+     ChattyCat: Available Challenges:
+     https://codingchallenges.fyi/challenges/1
+     https://codingchallenges.fyi/challenges/2
+     https://codingchallenges.fyi/challenges/3
+     https://leetcode.com/problems/middle-of-the-linked-list/
 
 
 
