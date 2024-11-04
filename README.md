@@ -10,3 +10,5 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
    ```text
    User: hello
    ChattyCat: Hello, smoky07830!
+
+2. **Motivational Quotes**: Users can request motivational quotes to stay inspired by using the command "!quote".
