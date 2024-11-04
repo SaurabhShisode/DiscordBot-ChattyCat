@@ -64,8 +64,9 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
      https://codingchallenges.fyi/challenges/2
      https://codingchallenges.fyi/challenges/3
      https://leetcode.com/problems/middle-of-the-linked-list/
+     
+## Deployment
+The project can be deployed by running the bot script (bot.py) on a server that is always online, such as Heroku or AWS.
 
-
-
-
-
+## Contributing
+Feel free to open a pull request for any improvements or new features. Contributions are always welcome.
