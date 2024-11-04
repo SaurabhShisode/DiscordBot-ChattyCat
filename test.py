@@ -3,7 +3,7 @@ import os
 
 # Hugging Face API token and Stable Diffusion endpoint
 API_TOKEN = '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'
-url = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4"
+url = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2"
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 # Prompt to generate an image

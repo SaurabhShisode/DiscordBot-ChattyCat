@@ -193,20 +193,17 @@ async def gif(ctx, *, search_term: str):
 @bot.command(name='weather')
 async def weather(ctx, *, location: str = None):
     """Fetches current weather data for a specified location."""
-    
-    # Check if location argument is missing
+
     if location is None:
         await ctx.send("Please specify a location. Usage: `!weather <location>`")
         return
 
-    # API request to fetch weather data
     url = f"http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={location}&aqi=no"
     try:
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
-        
-        # Extracting relevant weather information
+
         location_name = data['location']['name']
         region = data['location']['region']
         country = data['location']['country']
@@ -216,7 +213,6 @@ async def weather(ctx, *, location: str = None):
         humidity = data['current']['humidity']
         wind_kph = data['current']['wind_kph']
 
-        # Creating a response message
         weather_report = (
             f"**Weather in {location_name}, {region}, {country}**\n"
             f"🌡️ Temperature: {temp_c}°C (Feels like {feelslike_c}°C)\n"
@@ -236,28 +232,26 @@ async def generate_image(ctx, *, prompt: str):
     """Generates an AI image based on a text prompt using Hugging Face's Stable Diffusion."""
     await ctx.send("Generating your image, please wait...")
 
-    # API details
     url = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4"
     headers = {"Authorization": f"Bearer {HUGGING_FACE_API_KEY}"}
     payload = {"inputs": prompt}
 
     try:
-        # Make a POST request to the Hugging Face API
+      
         response = requests.post(url, headers=headers, json=payload)
-        response.raise_for_status()  # Check if the request was successful
+        response.raise_for_status() 
 
-        # Save the image content from the response
+     
         image_data = response.content
         image_filename = "generated_image.png"
         with open(image_filename, "wb") as f:
             f.write(image_data)
 
-        # Send the image file in Discord
         await ctx.send(file=discord.File(image_filename))
 
     except requests.RequestException as e:
         print(f"Error generating image: {e}")
         await ctx.send("There was an error generating the image. Please try again later.")
 
-# Run the bot
+
 bot.run(TOKEN)
