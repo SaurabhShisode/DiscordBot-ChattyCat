@@ -40,15 +40,16 @@ ChattyCat is a Discord bot designed to enhance user engagement and interaction b
    ChattyCat: 📜 Definition of placements: The act of placing or putting in place; the act of locating or positioning; the state of being 
    placed.
 10. **Coin Flip**: Flip a coin to get a random result of "Heads" or "Tails" using '!coinflip'.
-    
-   **Example:**
-   ```text
+
+    **Example:**
+    ```text
    User: !coinflip
    ChattyCat: 🎖 The coin landed on: Tails!
 11. **Coding Challenges**: Users can interact with coding challenges with various commands:
   - `!challenge`: Get a random coding challenge.
   - `!add <link>`: Add a new coding challenge link.
   - `!list`: List all available coding challenges.
+
    **Example:**
    ```text
    User: !challenge
