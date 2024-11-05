@@ -7,7 +7,9 @@ import re
 import asyncio
 import os
 from dotenv import load_dotenv
-from craiyon import Craiyon 
+from craiyon import Craiyon
+from flask import Flask
+from threading import Thread
 
 # Load environment variables
 load_dotenv()
@@ -19,13 +21,25 @@ HUGGING_FACE_API_KEY = os.getenv('HUGGING_FACE_API_KEY')
 
 intents = discord.Intents.default()
 intents.message_content = True
-
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+# Flask server to keep the bot alive
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+Thread(target=run).start()
 
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
+# Bot commands (trimmed for brevity)
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -35,7 +49,6 @@ async def on_message(message):
         await message.channel.send(f'Hello, {message.author.name}!')
     
     await bot.process_commands(message)
-
 
 @bot.command(name='challenge')
 async def challenge(ctx):
@@ -53,7 +66,6 @@ async def challenge(ctx):
     except json.JSONDecodeError:
         await ctx.send("Error reading challenges file.")
 
-
 @bot.command(name='quote')
 async def quote(ctx):
     """Fetch a random motivational quote."""
@@ -64,7 +76,6 @@ async def quote(ctx):
         await ctx.send(quote if quote else "No quote found.")
     except requests.RequestException:
         await ctx.send("Couldn't fetch a quote right now.")
-
 
 @bot.command(name='add')
 async def add_challenge(ctx, url):
@@ -84,7 +95,6 @@ async def add_challenge(ctx, url):
     except (FileNotFoundError, json.JSONDecodeError):
         await ctx.send("Error reading or writing to challenges file.")
 
-
 @bot.command(name='list')
 async def list_challenges(ctx):
     """List all coding challenges from the JSON file."""
@@ -98,7 +108,6 @@ async def list_challenges(ctx):
             await ctx.send("No challenges available.")
     except (FileNotFoundError, json.JSONDecodeError):
         await ctx.send("Error reading challenges file.")
-
 
 @bot.command(name='poll')
 async def poll(ctx, question: str, *options: str):
@@ -121,13 +130,11 @@ async def poll(ctx, question: str, *options: str):
     for i in range(len(options)):
         await poll_message.add_reaction(emojis[i])
 
-
 @bot.command(name='coinflip')
 async def coinflip(ctx):
     """Flip a coin."""
     result = random.choice(['Heads', 'Tails'])
     await ctx.send(f'🪙 The coin landed on: {result}!')
-
 
 @bot.command(name='define')
 async def define(ctx, *, word: str):
@@ -142,14 +149,12 @@ async def define(ctx, *, word: str):
     except (requests.RequestException, KeyError, IndexError):
         await ctx.send("Word not found. Please try a different word.")
 
-
 @bot.command(name='remind')
 async def remind(ctx, time: int, *, reminder: str):
     """Set a reminder."""
     await ctx.send(f"⏰ Reminder set! I'll remind you in {time} seconds.")
     await asyncio.sleep(time)
     await ctx.send(f"🔔 Reminder: {reminder}")
-
 
 @bot.command(name='song')
 async def song(ctx, *, track_name: str):
@@ -168,6 +173,7 @@ async def song(ctx, *, track_name: str):
             await ctx.send("No results found.")
     except requests.RequestException:
         await ctx.send("There was an error fetching the song. Please try again later.")
+
 @bot.command(name='gif')
 async def gif(ctx, *, search_term: str):
     """Fetches a random GIF related to the search term from Tenor."""
@@ -178,7 +184,6 @@ async def gif(ctx, *, search_term: str):
         gifs = response.json().get('results')
         
         if gifs:
-            # Select a random GIF from the results
             gif_url = random.choice(gifs).get('media_formats', {}).get('gif', {}).get('url')
             if gif_url:
                 await ctx.send(gif_url)
@@ -193,7 +198,6 @@ async def gif(ctx, *, search_term: str):
 @bot.command(name='weather')
 async def weather(ctx, *, location: str = None):
     """Fetches current weather data for a specified location."""
-
     if location is None:
         await ctx.send("Please specify a location. Usage: `!weather <location>`")
         return
@@ -237,11 +241,9 @@ async def generate_image(ctx, *, prompt: str):
     payload = {"inputs": prompt}
 
     try:
-      
         response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status() 
 
-     
         image_data = response.content
         image_filename = "generated_image.png"
         with open(image_filename, "wb") as f:
@@ -253,39 +255,5 @@ async def generate_image(ctx, *, prompt: str):
         print(f"Error generating image: {e}")
         await ctx.send("There was an error generating the image. Please try again later.")
 
-from flask import Flask
-from threading import Thread
-import os
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Bot is alive!"
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
-
-Thread(target=run).start()
-
-
-import discord
-from discord.ext import commands
-from dotenv import load_dotenv
-
-load_dotenv()
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-
-intents = discord.Intents.default()
-intents.message_content = True
-
-bot = commands.Bot(command_prefix="!", intents=intents)
-
-@bot.event
-async def on_ready():
-    print(f'{bot.user} has connected to Discord!')
-
-
-bot.run(DISCORD_TOKEN)
-
+# Start the Discord bot
 bot.run(TOKEN)
